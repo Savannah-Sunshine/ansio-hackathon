@@ -91,7 +91,7 @@
 		}
 	];
 
-
+	const technologies = [ "amazonec2", "Git", "GitHub", "Terraform", "Vercel"]
 
 	let name: string = $state('');
 	let languages: string[] = $state([]);
@@ -99,7 +99,6 @@
 	// Don't render much if data is not DataWithRepos
 	$effect(() => {
 		if (didDataSucceed(data)) {
-			console.log(data.code_snippets);
 			repos = data.repos;
 			name = 'Savannah Smith';
 			// code_snippets = data.code_snippets;
@@ -115,7 +114,6 @@
 	// Reactive, will update when repos change
 	$effect(() => {
 		if (repos && repos.length > 0) {
-			console.log(repos);
 			const newLanguages = repos
 				.map((repo) => {
 					if (repo.repo_language === 'HTML') {
@@ -129,7 +127,6 @@
 			// Otherwise, it will cause infinite loop
 			if (JSON.stringify(newLanguages) !== JSON.stringify(languages)) {
 				languages = newLanguages;
-				console.log(languages);
 			}
 		} else {
 			languages = [];
@@ -155,6 +152,15 @@
 				/>
 				<p>{language}</p>
 			{/each}
+			{#each technologies as technology}
+				<img
+					height="32"
+					width="32"
+					src={`https://unpkg.com/simple-icons@v13/icons/${technology.toLowerCase()}.svg`}
+					alt=""
+				/>
+				<p>{technology}</p>
+			{/each}
 		</ul>
 	{:else}
 		<p>No repositories found for this user.</p>
@@ -174,6 +180,12 @@
 		<ul>
 			{#each work_history as job}
 				<li>
+					<img
+						height="32"
+						width="32"
+						src={`https://unpkg.com/simple-icons@v13/icons/${job.company.toLowerCase().replace(' ', '')}.svg`}
+						alt=""
+					/>
 					<h2>{job.company}</h2>
 					<p>{job.position}</p>
 					<p>{job.start_date} - {job.end_date}</p>

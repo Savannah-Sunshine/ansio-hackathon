@@ -25,7 +25,7 @@ const query = `
 export async function load(event: { params: { userId: string } }) {
     // Todo: Fetch specific user's repos from GitHub API
     const userId = event.params.userId;
-    console.log(userId);
+    console.log('userId', userId);
 
     // Call api to get user's repos
     const repos = await actions.getRepos();
