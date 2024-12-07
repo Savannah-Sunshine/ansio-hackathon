@@ -35,5 +35,8 @@
 		"vite": "^6.0.0",
 		"vitest": "^2.0.4",
 		"web-vitals": "^3.5.0"
+	},
+	"dependencies": {
+		"chart.js": "^4.4.7"
 	}
 }

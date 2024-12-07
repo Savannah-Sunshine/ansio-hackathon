@@ -30,12 +30,12 @@ export async function load(event: { params: { userId: string } }) {
     // Call api to get user's repos
     const repos = await actions.getRepos();
 
-    // const calendar = await actions.getGithubContributions();
+    const calendar = await actions.getGithubContributions();
 
 
     // Todo, return only the repos that belong to the user? ... maybe?
 
-    return { repos };
+    return { repos, calendar };
 }
 
 export const actions = {
@@ -85,6 +85,7 @@ export const actions = {
                 error: new Error(data.errors[0].message)
             };
         }
+        console.log(data.data.user.contributionsCollection.contributionCalendar);
         return data.data.user.contributionsCollection.contributionCalendar;
     }
 };
