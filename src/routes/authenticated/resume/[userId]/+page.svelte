@@ -1,5 +1,10 @@
 <script lang="ts">
+	import Timeline from './timeline.svelte';
+	import Grid from './grid.svelte';
+	import CodeDisplay from './codeDisplay.svelte';
 	import type { Repository, DataSuccess, DataWithError, CodeSnippet, WorkHistory } from './types';
+
+
 	let { data }: { data: DataSuccess | DataWithError } = $props();
 
 	function didDataSucceed(data: DataSuccess | DataWithError): data is DataSuccess {
@@ -136,66 +141,25 @@
 
 <div>
 	<h1>{name}</h1>
-	{#if languages && languages.length > 0}
-		<ul>
-			{#each languages as language}
-				<!-- Use https://unpkg.com/simple-icons@v13/icons/.svg -->
-				<!-- Replace .svg with the name of the icon -->
-				<!-- For example, for Svelte, use svelte.svg -->
-				<!-- You can also use the icon directly from the website -->
-				<!-- https://simpleicons.org/ -->
-				<img
-					height="32"
-					width="32"
-					src={`https://unpkg.com/simple-icons@v13/icons/${language.toLowerCase()}.svg`}
-					alt=""
-				/>
-				<p>{language}</p>
-			{/each}
-			{#each technologies as technology}
-				<img
-					height="32"
-					width="32"
-					src={`https://unpkg.com/simple-icons@v13/icons/${technology.toLowerCase()}.svg`}
-					alt=""
-				/>
-				<p>{technology}</p>
-			{/each}
-		</ul>
-	{:else}
-		<p>No repositories found for this user.</p>
-	{/if}
 	{#if code_snippets && code_snippets.length > 0}
 		<ul>
 			{#each code_snippets as snippet}
-				{#each snippet.code_snippet as code}
-					<pre>{code}</pre>
-				{/each}
+				<CodeDisplay snippet={snippet} />
 			{/each}
 		</ul>
 	{:else}
 		<p>No code snippets found for this user.</p>
 	{/if}
 	{#if work_history && work_history.length > 0}
-		<ul>
-			{#each work_history as job}
-				<li>
-					<img
-						height="32"
-						width="32"
-						src={`https://unpkg.com/simple-icons@v13/icons/${job.company.toLowerCase().replace(' ', '')}.svg`}
-						alt=""
-					/>
-					<h2>{job.company}</h2>
-					<p>{job.position}</p>
-					<p>{job.start_date} - {job.end_date}</p>
-					<p>{job.description}</p>
-					<p>{job.location}</p>
-				</li>
-			{/each}
-		</ul>
+		<Timeline items={work_history} />
 	{:else}
 		<p>No work history found for this user.</p>
+	{/if}
+	{#if languages && languages.length > 0}
+		<Grid symbols={languages} />
+	{/if}
+	{#if technologies && technologies.length > 0}
+		<Grid symbols={technologies} />
 	{/if}
 	<!-- {#if repos && repos.length > 0}
         <ul>
@@ -218,7 +182,10 @@
     {/if} -->
 </div>
 
-<!-- <style>
+<style>
+	/* body {
+		padding: 48px;
+	} */
 	section {
 		display: flex;
 		flex-direction: column;
@@ -246,4 +213,4 @@
 		top: 0;
 		display: block;
 	} 
-</style>-->
+</style>
