@@ -33,7 +33,7 @@
 <style>
     .links {
         display: flex;
-        gap: 20px;
+        gap: 30px;
         list-style: none;
         padding: 0;
         margin: 0;

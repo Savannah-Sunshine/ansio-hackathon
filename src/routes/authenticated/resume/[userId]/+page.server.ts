@@ -30,8 +30,8 @@ export async function load(event: { params: { userId: string } }) {
     // Call api to get user's repos
     const repos = await actions.getRepos();
 
-    // const calendar = await actions.getGithubContributions(); // TODO: Uncomment this line when ready to use the GitHub API, too much work rn
-
+    // const contributions = await actions.getGithubContributions(); // TODO: Uncomment this line when ready to use the GitHub API, too much work rn
+    // console.log(contributions.totalContributions);
     // Print out auth information
     // console.log(session)
 

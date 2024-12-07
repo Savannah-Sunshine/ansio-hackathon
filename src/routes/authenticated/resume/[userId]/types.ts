@@ -12,6 +12,8 @@ export interface Repository {
 export interface DataSuccess {
     repos: Repository[];
     code_snippets: [CodeSnippet];
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    contributions: any;
 }
 
 export interface DataWithError {

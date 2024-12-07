@@ -3,6 +3,7 @@
 	import Grid from './grid.svelte';
 	import CodeDisplay from './codeDisplay.svelte';
 	import Links from './links.svelte';
+	import ContributionGraph from './contributionGraph.svelte';
 	import type { Repository, DataSuccess, DataWithError, CodeSnippet, WorkHistory } from './types';
 
 
@@ -51,7 +52,7 @@
 				{
 					id: 2,
 					line: 18,
-					text: 'I use code abstraction to make things more readable. The pullArm function is defined elsewhere, but readers can infer what it does.',
+					text: 'I use code abstraction to make things more readable. Ex: The pullArm function is defined elsewhere, but readers can infer what it does.',
 					timestamp: '2021-10-10T12:00:00Z'
 				}
 			],
@@ -101,17 +102,19 @@
 			location: 'Menlo Park, CA'
 		}
 	];
-
+	
 	const technologies = [ "amazonec2", "Git", "GitHub", "Terraform", "Vercel"]
 
 	let name: string = $state('');
 	let languages: string[] = $state([]);
+	// let contribution: any = $state(undefined);
 
 	// Don't render much if data is not DataWithRepos
 	$effect(() => {
 		if (didDataSucceed(data)) {
 			repos = data.repos;
 			name = 'Savannah Smith';
+			// contribution = data.contributions;
 			// code_snippets = data.code_snippets;
 		} else {
 			repos = undefined;
@@ -148,7 +151,9 @@
 <div>
 	<h1>{name}</h1>
 	<Links />
-
+	<!-- {#if contribution}
+		<ContributionGraph />
+	{/if} -->
 	{#if work_history && work_history.length > 0}
 		<h1 class="sectionTitle">Experience</h1>
 		<Timeline items={work_history} />
@@ -212,6 +217,8 @@
 	h1 {
 		width: 100%;
 		text-align: left;
+		margin-top: 50px;
+		margin-bottom: 10px;
 	}
 	.sectionTitle {
 		font-size: 1.5rem;
