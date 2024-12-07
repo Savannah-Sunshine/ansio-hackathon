@@ -2,10 +2,13 @@
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 	import { webVitals } from '$lib/vitals';
-	import Header from './Header.svelte';
 	import '../app.css';
 
-	let { data, children } = $props();
+	interface DataProps {
+		analyticsId?: string;
+	}
+
+	let { data, children } = $props<{ data: DataProps }>();
 
 	$effect(() => {
 		if (data?.analyticsId) {
@@ -18,8 +21,8 @@
 	});
 </script>
 
-<div class="app">
-	<Header />
+ <div class="app">
+	<!-- <Header /> -->
 
 	<main>
 		{@render children()}
@@ -27,7 +30,7 @@
 
 	<footer>
 		<p>
-			visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to learn about SvelteKit
+			Ansio
 		</p>
 	</footer>
 </div>
