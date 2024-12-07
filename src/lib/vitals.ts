@@ -3,10 +3,12 @@ import { onCLS, onFCP, onFID, onLCP, onTTFB, type Metric } from 'web-vitals';
 const vitalsUrl = 'https://vitals.vercel-analytics.com/v1/vitals';
 
 function getConnectionSpeed() {
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 	// @ts-ignore
 	return navigator?.connection?.effectiveType ?? '';
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function sendToAnalytics(metric: Metric, options: { params: { [s: string]: any; } | ArrayLike<any>; path: string; analyticsId: string; debug: boolean; }) {
 	const page = Object.entries(options.params).reduce(
 		(acc, [key, value]) => acc.replace(value, `[${key}]`),
@@ -42,6 +44,7 @@ function sendToAnalytics(metric: Metric, options: { params: { [s: string]: any; 
 		});
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function webVitals(options: any) {
 	try {
 		console.log(`[Web Vitals] for page ${options.path}`);

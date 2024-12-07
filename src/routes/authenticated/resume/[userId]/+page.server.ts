@@ -20,21 +20,22 @@ const query = `
   }
 `;
 
-
-
 export async function load(event: { params: { userId: string } }) {
     // Todo: Fetch specific user's repos from GitHub API
     const userId = event.params.userId;
+    console.log(userId);
 
     // Call api to get user's repos
     const repos = await actions.getRepos();
 
-    const calendar = await actions.getGithubContributions();
+    // const calendar = await actions.getGithubContributions(); // TODO: Uncomment this line when ready to use the GitHub API, too much work rn
 
+    // Print out auth information
+    // console.log(session.)
 
     // Todo, return only the repos that belong to the user? ... maybe?
 
-    return { repos, calendar };
+    return { repos };
 }
 
 export const actions = {
@@ -54,6 +55,7 @@ export const actions = {
         }
 
         // Return name, updated_at, language, size, git_url, watchers_count, forks_count, stargazers_count
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const repos: Repository[] = response.map((repo: any) => ({
             repo_name: repo.name,
             updated_at: repo.updated_at,
@@ -85,5 +87,24 @@ export const actions = {
             };
         }
         return data.data.user.contributionsCollection.contributionCalendar;
-    }
+    },
+    getGitHubUser: async function() {
+      const userResponse = await fetch('https://api.github.com/user', {
+          headers: {
+              Authorization: `Bearer ${apiKey}`
+          }
+      });
+  
+      const userData = await userResponse.json();
+      if (userData.error) {
+          throw new Error('Failed to fetch user information');
+      }
+  
+      return {
+          username: userData.login, // GitHub username
+          id: userData.id,          // GitHub user ID
+          avatar: userData.avatar_url, // GitHub avatar URL
+          name: userData.name       // Full name, if available
+      };
+  }
 };

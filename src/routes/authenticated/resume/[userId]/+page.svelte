@@ -1,8 +1,5 @@
 <script lang="ts">
 	import type { Repository, DataWithRepos, DataWithError } from './types';
-	// onMount(async () => {
-	// 	let { data }: { data: DataWithRepos | DataWithError } = $props();
-	// });
 	let { data }: { data: DataWithRepos | DataWithError } = $props();
 	
 	function isDataWithRepos(data: DataWithRepos | DataWithError): data is DataWithRepos {
@@ -25,7 +22,7 @@
 	});
 
 	// Get list of languages from repos, no duplicates and no null values
-	// Save also offical title of the language, HTML = HTMLX
+	// TODO: Currently saves also language for icon languages, HTML = HTMX bc HTML doesn't have an icon
 	// Reactive, will update when repos change
 	$effect(() => {
 		if (repos && repos.length > 0) {

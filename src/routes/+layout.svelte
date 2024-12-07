@@ -30,7 +30,7 @@
 
 	<footer>
 		<p>
-			Ansio
+			MADE BY SAVANNAH
 		</p>
 	</footer>
 </div>
