@@ -2,6 +2,7 @@
 	import Timeline from './timeline.svelte';
 	import Grid from './grid.svelte';
 	import CodeDisplay from './codeDisplay.svelte';
+	import Links from './links.svelte';
 	import type { Repository, DataSuccess, DataWithError, CodeSnippet, WorkHistory } from './types';
 
 
@@ -72,27 +73,30 @@
 	const work_history: WorkHistory[] = [
 		{
 			company: 'Google',
-			position: 'Software Engineer',
-			start_date: '2020-10-10',
-			end_date: '2021-10-10',
+			position: 'Senior Engineer',
+			start_date: 'Nov 2020',
+			end_date: null,
+			length: null,
 			description: "Worked on the Google Search team. Developed new features and improved existing ones. Implemented new algorithms to improve search results.",
 			location: 'Mountain View, CA'
 		},
 		{
-			company: 'Facebook',
-			position: 'Software Engineer',
-			start_date: '2017-10-10',
-			end_date: '2018-10-10',
-			description: "Worked on the Facebook Ads team. Developed new features and improved existing ones. Implemented new algorithms to improve ad targeting.",
-			location: 'Menlo Park, CA'
-		},
-		{
 			company: 'Amazon',
 			position: 'Software Engineer',
-			start_date: '2018-10-10',
-			end_date: '2020-10-10',
+			start_date: 'Oct 2018',
+			end_date: 'Nov 2020',
+			length: '2 yrs',
 			description: "Worked on the Amazon Recommendations team. Developed new features and improved existing ones. Implemented new algorithms to improve product recommendations.",
 			location: 'Seattle, WA'
+		},
+		{
+			company: 'Facebook',
+			position: 'Intern',
+			start_date: 'Dec 2017',
+			end_date: 'Oct 2018',
+			length: '10 mos',
+			description: "Worked on the Facebook Ads team. Developed new features and improved existing ones. Implemented new algorithms to improve ad targeting.",
+			location: 'Menlo Park, CA'
 		}
 	];
 
@@ -141,7 +145,18 @@
 
 <div>
 	<h1>{name}</h1>
+	<Links />
+
+	{#if work_history && work_history.length > 0}
+		<h1 class="sectionTitle">Experience</h1>
+		<Timeline items={work_history} />
+	{:else}
+		<p>No work history found for this user.</p>
+	{/if}
+
+
 	{#if code_snippets && code_snippets.length > 0}
+		<h1 class="sectionTitle">Experience</h1>
 		<ul>
 			{#each code_snippets as snippet}
 				<CodeDisplay snippet={snippet} />
@@ -150,12 +165,10 @@
 	{:else}
 		<p>No code snippets found for this user.</p>
 	{/if}
-	{#if work_history && work_history.length > 0}
-		<Timeline items={work_history} />
-	{:else}
-		<p>No work history found for this user.</p>
-	{/if}
+
+
 	{#if languages && languages.length > 0}
+		<h1 class="sectionTitle">Skills</h1>
 		<Grid symbols={languages} />
 	{/if}
 	{#if technologies && technologies.length > 0}
@@ -186,31 +199,19 @@
 	/* body {
 		padding: 48px;
 	} */
-	section {
+	/* section {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		flex: 0.6;
-	}
+	} */
 
 	h1 {
 		width: 100%;
+		text-align: left;
 	}
-
-	.welcome {
-		display: block;
-		position: relative;
-		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
+	.sectionTitle {
+		font-size: 1.5rem;
 	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
-	} 
 </style>

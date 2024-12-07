@@ -5,7 +5,7 @@
         "history" : [
             {
                 "company": "Google",
-                "position": "Software Engineer",
+                "position": "Senior Engineer",
                 "start_date": "2019-01-01",
                 "end_date": "2021-01-01",
                 "description": "Worked on the Google Search team. Developed new features and improved existing ones. Implemented new algorithms to improve search results.",
@@ -21,7 +21,7 @@
             },
             {
                 "company": "Amazon",
-                "position": "Software Engineer",
+                "position": "Intern",
                 "start_date": "2015-01-01",
                 "end_date": "2017-01-01",
                 "description": "Worked on the Amazon Recommendations team. Developed new features and improved existing ones. Implemented new algorithms to improve product recommendations.",
