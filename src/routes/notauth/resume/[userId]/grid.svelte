@@ -12,13 +12,15 @@
 		padding: 0;
 		margin: 0;
 		align-items: center;
+		gap: 20px;
+		padding: 20px;
 	}
 
 	/* Style for individual items */
 	.symbols-item {
 		position: relative;
-		width: 32px;
-		height: 32px;
+		width: 100px;
+		height: 100px;
 		cursor: pointer;
 	}
 
@@ -50,8 +52,8 @@
 	{#each symbols as symbol}
 		<li class="symbols-item">
 			<img
-				height="32"
-				width="32"
+				height="100"
+				width="100"
 				src={`https://unpkg.com/simple-icons@v13/icons/${symbol.toLowerCase()}.svg`}
 				alt="{symbol} icon"
 			/>
