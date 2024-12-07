@@ -22,18 +22,6 @@
     }
 
     /* Circle indicator on the timeline */
-    .timeline-item::before {
-        content: '';
-        position: absolute;
-        left: -9px; /* Centers circle on the timeline line */
-        top: 10px;
-        width: 18px;
-        height: 18px;
-        background-color: var(--color-theme-2);
-        border: 3px solid #007bff; /* Circle color */
-        border-radius: 50%;
-        z-index: 1;
-    }
 
     /* Timeline content container */
     .timeline-content {

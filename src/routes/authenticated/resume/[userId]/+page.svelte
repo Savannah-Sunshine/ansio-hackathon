@@ -16,6 +16,7 @@
 	// let code_snippets: [CodeSnippet] = $state([{ code_snippet: [], comments: [] }]);
 	const code_snippets: CodeSnippet[] = [
 		{
+			title: 'Multi-Armed Bandit Algorithm',
 			code_snippet: [
 				'def epsilon_greedy(machine):',
 				'    global justexplore',
@@ -43,26 +44,27 @@
 			comments: [
 				{
 					id: 1,
-					line: 1,
+					line: 0,
 					text: "Algorithm I developed to solve the multi-armed bandit problem. Balanced to exploit trends, while still exploring new options. Won me first place.",
 					timestamp: '2021-10-10T12:00:00Z'
 				},
 				{
 					id: 2,
-					line: 10,
-					text: 'I use code abstraction to make things more readable. The pullArm function is defined elsewhere, but obvious what it does.',
+					line: 18,
+					text: 'I use code abstraction to make things more readable. The pullArm function is defined elsewhere, but readers can infer what it does.',
 					timestamp: '2021-10-10T12:00:00Z'
 				}
 			],
 			github_url: 'https://github.com/Savannah-Sunshine/MultiArmed-Bandit/tree/main'
 		},
 		{
+			title: 'Hello World',
 			code_snippet: ['console.log("Hello, World!")'],
 			comments: [
 				{
 					id: 1,
-					line: 1,
-					text: 'Simple hello world program in JS.',
+					line: 0,
+					text: 'I am an amazing coder.',
 					timestamp: '2021-10-10T12:00:00Z'
 				}
 			],
@@ -156,7 +158,7 @@
 
 
 	{#if code_snippets && code_snippets.length > 0}
-		<h1 class="sectionTitle">Experience</h1>
+		<h1 class="sectionTitle">Code Samples</h1>
 		<ul>
 			{#each code_snippets as snippet}
 				<CodeDisplay snippet={snippet} />
