@@ -1,6 +1,8 @@
 // import type { Load } from './$types';
+import fs from 'fs/promises';
+import path from 'path';
 import { env } from '$env/dynamic/private';
-import type { Repository } from './types';
+import type { Repository, CodeSnippet } from './types';
 const apiKey = env.GITHUB_TOKEN;
 const query = `
   query {
@@ -31,11 +33,27 @@ export async function load(event: { params: { userId: string } }) {
     // const calendar = await actions.getGithubContributions(); // TODO: Uncomment this line when ready to use the GitHub API, too much work rn
 
     // Print out auth information
-    // console.log(session.)
+    // console.log(session)
 
     // Todo, return only the repos that belong to the user? ... maybe?
 
-    return { repos };
+    // Take data from data/data.json
+    const file_path = path.resolve('src/lib/data/data.json');
+    // Parse the data from the file
+    const data = await JSON.parse(await fs.readFile(file_path, 'utf-8'));
+    // Check for failure
+    const code_snippets : [CodeSnippet] = [{code_snippet: [], comments: [], github_url: ''}];
+    for (let i = 0; i < data.length; i++) {
+        code_snippets.push({comments: data[i].comments, code_snippet: data[i].code_snippet, github_url: data[i].github_url});
+
+        // TODO: Only get code snippets that belong to the user
+        // if (data[i].userId === userId) {
+        //     console.log(data[i].comments);
+        //     code_snippets.push({comments: data[i].comments, code_snippet: data[i].code_snippet});
+        // }
+    }
+
+    return { repos, code_snippets};
 }
 
 export const actions = {
@@ -88,23 +106,23 @@ export const actions = {
         }
         return data.data.user.contributionsCollection.contributionCalendar;
     },
-    getGitHubUser: async function() {
-      const userResponse = await fetch('https://api.github.com/user', {
-          headers: {
-              Authorization: `Bearer ${apiKey}`
-          }
-      });
-  
-      const userData = await userResponse.json();
-      if (userData.error) {
-          throw new Error('Failed to fetch user information');
-      }
-  
-      return {
-          username: userData.login, // GitHub username
-          id: userData.id,          // GitHub user ID
-          avatar: userData.avatar_url, // GitHub avatar URL
-          name: userData.name       // Full name, if available
-      };
-  }
+    getGitHubUser: async function () {
+        const userResponse = await fetch('https://api.github.com/user', {
+            headers: {
+                Authorization: `Bearer ${apiKey}`
+            }
+        });
+
+        const userData = await userResponse.json();
+        if (userData.error) {
+            throw new Error('Failed to fetch user information');
+        }
+
+        return {
+            username: userData.login, // GitHub username
+            id: userData.id,          // GitHub user ID
+            avatar: userData.avatar_url, // GitHub avatar URL
+            name: userData.name       // Full name, if available
+        };
+    }
 };

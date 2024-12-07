@@ -30,7 +30,7 @@
 
 	<footer>
 		<p>
-			MADE BY SAVANNAH
+			BUILT BY SAVANNAH :)
 		</p>
 	</footer>
 </div>

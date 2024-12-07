@@ -1,0 +1,32 @@
+[
+    {
+        "id": 1,
+        "owner": "Savannah-Sunshine",
+        "history" : [
+            {
+                "company": "Google",
+                "position": "Software Engineer",
+                "start_date": "2019-01-01",
+                "end_date": "2021-01-01",
+                "description": "Worked on the Google Search team. Developed new features and improved existing ones. Implemented new algorithms to improve search results.",
+                "location": "Mountain View, CA"
+            },
+            {
+                "company": "Facebook",
+                "position": "Software Engineer",
+                "start_date": "2017-01-01",
+                "end_date": "2019-01-01",
+                "description": "Worked on the Facebook Ads team. Developed new features and improved existing ones. Implemented new algorithms to improve ad targeting.",
+                "location": "Menlo Park, CA"
+            },
+            {
+                "company": "Amazon",
+                "position": "Software Engineer",
+                "start_date": "2015-01-01",
+                "end_date": "2017-01-01",
+                "description": "Worked on the Amazon Recommendations team. Developed new features and improved existing ones. Implemented new algorithms to improve product recommendations.",
+                "location": "Seattle, WA"
+            }
+        ]
+    }
+]

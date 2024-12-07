@@ -1,0 +1,55 @@
+[{
+        "id": 2,
+        "owner": "Savannah-Sunshine",
+        "code_snippet": ["console.log('Hello World!')"],
+        "github_repo": "https://github.com",
+        "comments": [{
+            "id": 1,
+            "line": 1,
+            "text": "This is a comment",
+            "timestamp": "2021-01-01T23:28:56.782Z"
+        }]
+    },
+    {
+        "id": 1,
+        "owner": "Savannah-Sunshine",
+        "code_snippet": [
+            "def epsilon_greedy(machine):",
+            "    global justexplore",
+            "    global epsilon",
+            "    global reward_hist, counts",
+            "",
+            "    # Degrades saved history of rewards",
+            "    for i in range(len(reward_hist)):",
+            "        reward_hist[i] *= decay_factor",
+            "",
+            "    # Tells algorithm to explore",
+            "    if random.random() < epsilon or justexplore < 10:",
+            "      arm_choice = random.randint(0,2)",
+            "      justexplore += 1",
+            "",
+            "    else:",
+            "      # Chooses action based its knowledge of best reward",
+            "      bestVal = max(reward_hist)",
+            "      arm_choice = reward_hist.index(bestVal)",
+            "",
+            "    counts[arm_choice] += 1",
+            "    reward = pullArm(machine, armChoice)",
+            "    reward_hist[arm_choice] += reward"
+
+        ],
+        "github_repo": "https://github.com",
+        "comments": [{
+            "id": 1,
+            "line": 0,
+            "text": "Algorithm I developed to solve the multi-armed bandit problem. Balanced to exploit trends, while still exploring new options. Won me first place.",
+            "timestamp": "2021-01-01T23:28:56.782Z"
+        },
+        {
+            "id": 2,
+            "line": 10,
+            "text": "This is a comment",
+            "timestamp": "2021-01-01T23:28:56.782Z"
+        }]
+    }
+]
