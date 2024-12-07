@@ -1,8 +1,8 @@
 <!-- Write simple button that goes to /resume/[userId], -->
 <!-- where userId is a number. -->
-<script>
+<script lang="ts">
   import { goto } from '$app/navigation';
-    const userId = 1;
+    const userId: number = 1;
     const handleClick = () => {
         goto(`/resume/${userId}`);
     };

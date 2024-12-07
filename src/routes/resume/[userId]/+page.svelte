@@ -1,6 +1,8 @@
 <script lang="ts">
 	import type { Repository, DataWithRepos, DataWithError } from './types';
-
+	// onMount(async () => {
+	// 	let { data }: { data: DataWithRepos | DataWithError } = $props();
+	// });
 	let { data }: { data: DataWithRepos | DataWithError } = $props();
 	
 	function isDataWithRepos(data: DataWithRepos | DataWithError): data is DataWithRepos {

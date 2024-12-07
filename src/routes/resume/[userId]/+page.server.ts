@@ -1,6 +1,5 @@
 // import type { Load } from './$types';
 import { env } from '$env/dynamic/private';
-import { GITHUB_TOKEN } from '$env/static/private';
 import type { Repository } from './types';
 const apiKey = env.GITHUB_TOKEN;
 const query = `
@@ -85,7 +84,6 @@ export const actions = {
                 error: new Error(data.errors[0].message)
             };
         }
-        console.log(data.data.user.contributionsCollection.contributionCalendar);
         return data.data.user.contributionsCollection.contributionCalendar;
     }
 };
