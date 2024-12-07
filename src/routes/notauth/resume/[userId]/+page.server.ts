@@ -38,20 +38,61 @@ export async function load(event: { params: { userId: string } }) {
     // Todo, return only the repos that belong to the user? ... maybe?
 
     // Take data from data/data.json
-    const file_path = path.resolve('src/lib/data/data.json');
-    // Parse the data from the file
-    const data = await JSON.parse(await fs.readFile(file_path, 'utf-8'));
+    // const file_path = path.resolve('src/lib/data/data.json');
+    // // Parse the data from the file
+    // const data = await JSON.parse(await fs.readFile(file_path, 'utf-8'));
     // Check for failure
-    const code_snippets : [CodeSnippet] = [{code_snippet: [], comments: [], github_url: ''}];
-    for (let i = 0; i < data.length; i++) {
-        code_snippets.push({comments: data[i].comments, code_snippet: data[i].code_snippet, github_url: data[i].github_url});
+    const data = [
+        {
+            code_snippet: [
+                "def epsilon_greedy(machine):",
+            "    global justexplore",
+            "    global epsilon",
+            "    global reward_hist, counts",
+            "",
+            "    # Degrades saved history of rewards",
+            "    for i in range(len(reward_hist)):",
+            "        reward_hist[i] *= decay_factor",
+            "",
+            "    # Tells algorithm to explore",
+            "    if random.random() < epsilon or justexplore < 10:",
+            "      arm_choice = random.randint(0,2)",
+            "      justexplore += 1",
+            "",
+            "    else:",
+            "      # Chooses action based its knowledge of best reward",
+            "      bestVal = max(reward_hist)",
+            "      arm_choice = reward_hist.index(bestVal)",
+            "",
+            "    counts[arm_choice] += 1",
+            "    reward = pullArm(machine, armChoice)",
+            "    reward_hist[arm_choice] += reward"
+            ],
+            github_url: "https://github.com",
+            comments: [{
+                id: 1,
+                line: 0,
+                text: "Algorithm I developed to solve the multi-armed bandit problem. Balanced to exploit trends, while still exploring new options. Won me first place.",
+                timestamp: "2021-01-01T23:28:56.782Z"
+            },
+            {
+                id: 2,
+                line: 18,
+                text: "This is a comment",
+                timestamp: "2021-01-01T23:28:56.782Z"
+            }]
+        }
+    ];
 
-        // TODO: Only get code snippets that belong to the user
-        // if (data[i].userId === userId) {
-        //     console.log(data[i].comments);
-        //     code_snippets.push({comments: data[i].comments, code_snippet: data[i].code_snippet});
-        // }
+    const code_snippets = [];
+    for (let i = 0; i < data.length; i++) {
+        code_snippets.push({
+            comments: data[i].comments,
+            code_snippet: data[i].code_snippet,
+            github_url: data[i].github_url
+        });
     }
+        
 
     return { repos, code_snippets};
 }
