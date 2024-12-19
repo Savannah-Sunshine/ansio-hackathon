@@ -4,9 +4,9 @@
 
 <div class="this">
 	<!-- See my resume -->
-	<button on:click={() => goto('/notauth/resume/Savannah-Sunshine')}>See my resume</button>
+	<button on:click={() => goto('/authenticated/resume/Savannah-Sunshine')}>See my resume</button>
 	<!-- Create new resume -->
-	<button on:click={() => goto('/notauth/create')}>Create new resume</button>
+	<button on:click={() => goto('/authenticated/create')}>Create new resume</button>
 </div>
 
 <style>

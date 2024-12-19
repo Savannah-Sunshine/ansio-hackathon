@@ -16,10 +16,9 @@
     </SignOut>
   {:else}
     <span class="notSignedInText">You are not signed in</span>
-    <!-- <SignIn>
+    <SignIn>
       <div slot="submitButton" class="buttonPrimary">Sign in</div>
-    </SignIn> -->
-    <button class="buttonPrimary" on:click={() => goto("/notauth")}>Sign in</button>
+    </SignIn>
     <!-- <SignIn provider="Github"/> -->
   {/if}
 </div>
